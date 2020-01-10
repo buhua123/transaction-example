@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jta.atomikos.AtomikosDataSourceBean;
 import org.springframework.context.annotation.Bean;
@@ -24,17 +25,25 @@ import javax.sql.DataSource;
 @MapperScan(basePackages = {"io.ilss.transaction.twodatasource.dao.order"}, sqlSessionTemplateRef = "orderSqlSessionTemplate")
 public class OrderConfiguration {
 
+
+    @Value("${spring.datasource.order.url}")
+    private String url;
+    @Value("${spring.datasource.order.username}")
+    private String username;
+    @Value("${spring.datasource.order.password}")
+    private String password;
+
+
     @Bean(name = "orderDataSource")
     public DataSource orderDataSource() {
         AtomikosDataSourceBean atomikosDataSourceBean = new AtomikosDataSourceBean();
         DruidXADataSource druidXADataSource = new DruidXADataSource();
-        druidXADataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        druidXADataSource.setUsername("root");
-        druidXADataSource.setPassword("feng1104");
-        druidXADataSource.setUrl("jdbc:mysql://127.0.0.1:3306/transaction_order?useSSL=false&characterEncoding=UTF-8");
-        druidXADataSource.setDbType("mysql");
+        druidXADataSource.setUrl(url);
+        druidXADataSource.setUsername(username);
+        druidXADataSource.setPassword(password);
+        druidXADataSource.setName("druidDataSource-order");
         atomikosDataSourceBean.setXaDataSource(druidXADataSource);
-        atomikosDataSourceBean.setUniqueResourceName("orderDataSource");
+        atomikosDataSourceBean.setUniqueResourceName("orderResource");
         return atomikosDataSourceBean;
     }
 

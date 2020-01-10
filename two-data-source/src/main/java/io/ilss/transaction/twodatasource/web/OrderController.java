@@ -34,4 +34,18 @@ public class OrderController {
         return orderService.createOrder(orderInfoDO);
     }
 
+    @GetMapping("/create/code")
+    public String createCode() {
+        OrderInfoDO orderInfoDO = new OrderInfoDO();
+        orderInfoDO.setAccountId(1L);
+        orderInfoDO.setAmount(new BigDecimal(100L));
+        orderInfoDO.setDetail("买衣服");
+        orderInfoDO.setCompleted(0);
+        orderInfoDO.setOrderState(OrderStateEnum.PAID.getState());
+        orderInfoDO.setUpdateTime(LocalDateTime.now());
+        orderInfoDO.setCreateTime(LocalDateTime.now());
+
+        return orderService.createOrderCode(orderInfoDO);
+    }
+
 }

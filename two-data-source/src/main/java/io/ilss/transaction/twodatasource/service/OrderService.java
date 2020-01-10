@@ -7,4 +7,7 @@ import io.ilss.transaction.twodatasource.entities.OrderInfoDO;
  */
 public interface OrderService {
     String createOrder(OrderInfoDO orderInfoDO);
+
+    String createOrderCode(OrderInfoDO orderInfoDO);
+
 }

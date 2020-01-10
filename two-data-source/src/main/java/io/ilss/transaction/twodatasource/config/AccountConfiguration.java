@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jta.atomikos.AtomikosDataSourceBean;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +16,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import javax.sql.DataSource;
+import java.util.Properties;
 
 /**
  * @author feng
@@ -24,17 +26,25 @@ import javax.sql.DataSource;
 @MapperScan(basePackages = {"io.ilss.transaction.twodatasource.dao.account"}, sqlSessionTemplateRef = "accountSqlSessionTemplate")
 public class AccountConfiguration {
 
+    @Value("${spring.datasource.account.url}")
+    private String url;
+    @Value("${spring.datasource.account.username}")
+    private String username;
+    @Value("${spring.datasource.account.password}")
+    private String password;
+
+
+
     @Bean(name = "accountDataSource")
     public DataSource accountDataSource() {
         AtomikosDataSourceBean atomikosDataSourceBean = new AtomikosDataSourceBean();
         DruidXADataSource druidXADataSource = new DruidXADataSource();
-        druidXADataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        druidXADataSource.setUsername("root");
-        druidXADataSource.setPassword("feng1104");
-        druidXADataSource.setDbType("mysql");
-        druidXADataSource.setUrl("jdbc:mysql://127.0.0.1:3306/transaction_account?useSSL=false&characterEncoding=UTF-8");
+        druidXADataSource.setUrl(url);
+        druidXADataSource.setUsername(username);
+        druidXADataSource.setPassword(password);
+        druidXADataSource.setName("druidDataSource-account");
         atomikosDataSourceBean.setXaDataSource(druidXADataSource);
-        atomikosDataSourceBean.setUniqueResourceName("accountDataSource");
+        atomikosDataSourceBean.setUniqueResourceName("accountResource");
         return atomikosDataSourceBean;
     }
 
