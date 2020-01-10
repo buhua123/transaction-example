@@ -8,5 +8,8 @@
     <artifactId>transaction-example</artifactId>
     <version>1.0</version>
 
-
+    <modules>
+        <module>one-data-source</module>
+        <module>two-data-source</module>
+    </modules>
 </project>

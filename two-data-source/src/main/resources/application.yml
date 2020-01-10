@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: two-data-source
+#  datasource:
+#    account:
+#      url: jdbc:mysql://127.0.0.1:3306/transaction_account?useSSL=false&characterEncoding=UTF-8
+#      username: root
+#      password: feng1104
+#    order:
+#      url: jdbc:mysql://127.0.0.1:3306/transaction_order?useSSL=false&characterEncoding=UTF-8
+#      username: root
+#      password: feng1104
+logging:
+  level:
+    root: DEBUG
+  config:
+mybatis:
+  mapper-locations: classpath:mappers/*.xml

@@ -1,6 +1,6 @@
 spring:
   application:
-    name: spring-boot-mybatis-druid
+    name: one-data-source
   datasource:
     druid:
       url: jdbc:mysql://127.0.0.1:3306/transaction_account?useSSL=false&characterEncoding=UTF-8

@@ -1,0 +1,2 @@
+{"id":"10.11.11.11.tm157864564385900001","wasCommitted":true,"participants":[{"uri":"10.11.11.11.tm1","state":"COMMITTING","expires":1578645653855,"resourceName":"accountDataSource"},{"uri":"10.11.11.11.tm2","state":"COMMITTING","expires":1578645653855,"resourceName":"orderDataSource"}]}
+{"id":"10.11.11.11.tm157864564385900001","wasCommitted":true,"participants":[{"uri":"10.11.11.11.tm1","state":"TERMINATED","expires":1578645653862,"resourceName":"accountDataSource"},{"uri":"10.11.11.11.tm2","state":"TERMINATED","expires":1578645653862,"resourceName":"orderDataSource"}]}
